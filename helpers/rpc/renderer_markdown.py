@@ -312,6 +312,8 @@ class RendererMarkdown:
 
     def render_cmd_page(self, command, help_data):
         command_file = command + ".md"
+        if not os.path.exists(self.output_dir / "rpcs"):
+            os.mkdir(self.output_dir / "rpcs")
         with open(self.output_dir / "rpcs" / command_file, "w") as file:
             file.write(self.process_command_help(help_data))
 
@@ -358,6 +360,8 @@ Use v0.n.n in abbreviation title to prevent autocrossrefing.""")
             page, "0.11.0", "July 2015", new=True, updated=False)
 
     def render_overview_page(self, all_commands, render_version_info=True):
+        if not os.path.exists(self.output_dir):
+            os.mkdir(self.output_dir)
         with open(self.output_dir / "quick-reference.md", "w") as file:
             page = Page()
 
